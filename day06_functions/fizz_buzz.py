@@ -9,4 +9,3 @@ def fizzbuzz(number):
     else:
         return number
     
-print(fizzbuzz(12))

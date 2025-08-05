@@ -8,4 +8,3 @@ def celsius(f):
     return f"{round(c, 2)}℃"
 
 
-print(fahrenheit(37.78))
