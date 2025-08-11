@@ -5,7 +5,6 @@ from datetime import datetime
 from colorama import Fore, Back, Style
 
 file_path = "tasks.json"
-current_datetime = datetime.now()
 
 
 def write_tasks(tasks):
@@ -18,6 +17,7 @@ def write_tasks(tasks):
 
 
 def add_task(task):
+    current_datetime = datetime.now()
     # Step 1: Load existing tasks if file exists
     if os.path.exists(file_path):
         with open(file_path, "r") as f:
@@ -34,10 +34,11 @@ def add_task(task):
     }
 
     # Step 3: Write updated task list
-    return write_tasks(tasks)
+    write_tasks(tasks)
 
 
 def delete_task(taskId):
+    taskId = int(taskId)
     with open(file_path, "r") as f:
         tasks = json.load(f)
 
@@ -51,6 +52,7 @@ def delete_task(taskId):
 
 
 def complete_tasks(taskId):
+    taskId = int(taskId)
     with open(file_path, "r") as f:
         tasks = json.load(f)
 
@@ -72,7 +74,7 @@ def clear_file():
     write_tasks(tasks)
 
 
-def list():
+def list_tasks():
     with open(file_path, "r") as f:
         tasks = json.load(f)
     sorted_tasks = dict(
@@ -86,10 +88,9 @@ def list():
 
     # Print result
     for task_id, info in sorted_tasks.items():
-        if info['status'] == 'complete':
+        if info["status"] == "complete":
             print(Fore.GREEN + info["status"])
             print(info)
         else:
             print(Fore.RED + info["status"])
             print(info)
-

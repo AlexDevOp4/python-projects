@@ -1,6 +1,6 @@
 import argparse
 
-from task_manager import add_task, delete_task, complete_tasks, clear_file, list
+from task_manager import add_task, delete_task, complete_tasks, clear_file, list_tasks
 
 parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers(dest="command")
@@ -31,10 +31,10 @@ if args.command == "add":
 elif args.command == "remove":
     delete_task(args.task_id)
 elif args.command == "list":
-    list()
+    list_tasks()
 elif args.command == "complete":
     complete_tasks(args.task_id)
-elif args.commad == "clear":
+elif args.command == "clear":
     clear_file()
 else:
     "Command not found"
